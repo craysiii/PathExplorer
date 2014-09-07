@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathExplorer", "PathExplorer.csproj", "{075AC83B-1288-42EE-8052-C7B30067D07E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{075AC83B-1288-42EE-8052-C7B30067D07E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075AC83B-1288-42EE-8052-C7B30067D07E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075AC83B-1288-42EE-8052-C7B30067D07E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075AC83B-1288-42EE-8052-C7B30067D07E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
