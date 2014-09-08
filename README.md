@@ -15,4 +15,6 @@ Changes to the PATH will not be saved until you click the "Commit PATH Changes" 
 
 DUE TO THE NATURE OF THIS PROGRAM, YOU MUST RUN AS ADMINISTRATOR. THE PROGRAM WILL NOT SAVE IF YOU ARE NOT RUNNING AS ADMINISTRATOR.
 
-Hope you enjoy. - Charles
+Hope you enjoy.
+
+PathExplorer uses an MIT License. More can be found in LICENSE.
