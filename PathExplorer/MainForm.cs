@@ -4,11 +4,8 @@
  * Date: 9/7/2014
  * Time: 2:17 PM
  * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
@@ -45,7 +42,6 @@ namespace PathExplorer
 					
 					else
 					{
-						MessageBox.Show(value);
 						throw new FileNotFoundException(@value + "does not exist.");
 					}
 				}
@@ -109,13 +105,9 @@ namespace PathExplorer
 		
 		public MainForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
 			
 			explorer = new PathExplorer();
-			
 		}
 		
 		void MainFormLoad(object sender, EventArgs e)
