@@ -5,20 +5,22 @@ namespace PathExplorer
 {
     public class Path
     {
-        private string value;
+        private string _value;
+
+        public Path(string value)
+        {
+            Value = value;
+        }
 
         [DisplayName("Path Variable")]
         public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get { return _value; }
             set
             {
                 if (File.Exists(value) || Directory.Exists(value))
                 {
-                    this.value = value;
+                    this._value = value;
                 }
 
                 else
@@ -27,11 +29,5 @@ namespace PathExplorer
                 }
             }
         }
-
-        public Path(string value)
-        {
-            this.Value = value;
-        }
-
     }
 }

@@ -1,52 +1,40 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using Microsoft.Win32;
 
 namespace PathExplorer
 {
     public class PathExplorer
     {
-        private readonly string PathKey = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
-        BindingList<Path> paths = new BindingList<Path>();
+        private const string PathKey = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
+
+        private readonly BindingList<Path> _paths = new BindingList<Path>();
 
         public PathExplorer()
         {
-            string temp = (string)Registry.GetValue(PathKey, "Path", null);
-            var list = temp.Split(';');
-            foreach (string item in list)
-            {
-                this.addPath(item);
-            }
-
+            var temp = (string) Registry.GetValue(PathKey, "Path", null);
+            temp.Split(';').ToList().ForEach(AddPath);
         }
 
         public BindingList<Path> Paths
         {
-            get
-            {
-                return this.paths;
-            }
+            get { return _paths; }
         }
 
-        public void addPath(string value)
+        public void AddPath(string value)
         {
             var path = new Path(value);
-            this.paths.Add(path);
-
+            _paths.Add(path);
         }
 
-        public void deletePath(int index)
+        public void DeletePath(int index)
         {
-            this.paths.RemoveAt(index);
+            _paths.RemoveAt(index);
         }
 
-        public void commitPath()
+        public void CommitPath()
         {
-            string absolutePath = "";
-            foreach (Path path in this.paths)
-            {
-                absolutePath += (path.Value + ';');
-            }
-
+            var absolutePath = _paths.Aggregate("", (current, path) => current + (path.Value + ';'));
             Registry.SetValue(PathKey, "Path", absolutePath.Substring(0, absolutePath.Length - 1));
         }
     }
