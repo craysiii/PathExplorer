@@ -8,12 +8,11 @@
 
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace PathExplorer
 {
-    /// <summary>
-    ///     Description of MainForm.
-    /// </summary>
+
     public partial class MainForm : Form
     {
         private readonly PathExplorer _explorer;
@@ -22,19 +21,29 @@ namespace PathExplorer
         {
             InitializeComponent();
 
-            _explorer = new PathExplorer();
+            _explorer = new PathExplorer();                // Retrieve PATH values
         }
 
         private void MainFormLoad(object sender, EventArgs e)
         {
-            pathDataGridView.DataSource = _explorer.Paths;
-            pathDataGridView.RowHeadersVisible = false;
-            pathDataGridView.Columns[0].Width = pathDataGridView.Width - 3;
+            pathDataGridView.DataSource = _explorer.Paths; // Bind data to grid
+            pathDataGridView.RowHeadersVisible = false;    // Hide first column
+            pathDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
+            // Any invalid paths will be singled out here
+            foreach (DataGridViewRow row in pathDataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (!_explorer.Paths[cell.RowIndex].isValid() && cell.RowIndex != -1)
+                        cell.Style.BackColor = Color.Red;
+                }
+            }  
         }
 
         private void PathDataGridViewCellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (pathDataGridView.IsCurrentCellDirty)
+            if (pathDataGridView.IsCurrentCellDirty)       // Only commit if cell actually changed
             {
                 pathDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
@@ -43,17 +52,6 @@ namespace PathExplorer
         private void PathDataGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("The entered value does not exist on the file system.");
-        }
-
-        private void AddFileButtonClick(object sender, EventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            var result = dialog.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                _explorer.AddPath(dialog.FileName);
-            }
         }
 
         private void AddFolderButtonClick(object sender, EventArgs e)
@@ -87,7 +85,8 @@ namespace PathExplorer
             }
             else
             {
-                // I don't know what you want to do here, probably nothing?
+                MessageBox.Show("No row selected for deletion.", "Delete Current Row",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

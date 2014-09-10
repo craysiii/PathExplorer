@@ -5,8 +5,6 @@ namespace PathExplorer
 {
     public class Path
     {
-        private string _value;
-
         public Path(string value)
         {
             Value = value;
@@ -15,19 +13,13 @@ namespace PathExplorer
         [DisplayName("Path Variable")]
         public string Value
         {
-            get { return _value; }
-            set
-            {
-                if (File.Exists(value) || Directory.Exists(value))
-                {
-                    this._value = value;
-                }
-
-                else
-                {
-                    throw new FileNotFoundException(@value + "does not exist.");
-                }
-            }
+            get;
+            set;
+        }
+        
+        public bool isValid()
+        {
+            return Directory.Exists(this.Value);
         }
     }
 }

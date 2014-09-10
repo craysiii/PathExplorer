@@ -29,7 +29,10 @@ namespace PathExplorer
 
         public void DeletePath(int index)
         {
-            _paths.RemoveAt(index);
+            if ( index >= 0 && index < _paths.Count )
+            {
+                _paths.RemoveAt(index);
+            }    
         }
 
         public void CommitPath()
