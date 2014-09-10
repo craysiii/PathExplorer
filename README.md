@@ -3,6 +3,8 @@ PathExplorer
 
 A simple program to add, edit, and delete entries from your PATH.
 
+<img src="http://i.imgur.com/ykXPEG0.png">
+
 Using this program should be pretty straight forward. Once it loads, you will be presented with a list of the current folders in your PATH. 
 
 The 'Add Folder' button will bring up the select folder dialog.
