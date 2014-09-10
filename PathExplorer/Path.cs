@@ -17,9 +17,9 @@ namespace PathExplorer
             set;
         }
         
-        public bool isValid()
+        public static bool isValid(string value)
         {
-            return Directory.Exists(this.Value);
+            return Directory.Exists(value);
         }
     }
 }

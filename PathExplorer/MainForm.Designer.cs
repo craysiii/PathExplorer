@@ -55,7 +55,6 @@ namespace PathExplorer
 		    this.pathDataGridView.Size = new System.Drawing.Size(497, 330);
 		    this.pathDataGridView.TabIndex = 0;
 		    this.pathDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PathDataGridViewCellValidating);
-		    this.pathDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.PathDataGridViewDataError);
 		    // 
 		    // addFolderButton
 		    // 

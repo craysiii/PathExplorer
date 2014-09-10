@@ -35,7 +35,7 @@ namespace PathExplorer
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (!_explorer.Paths[cell.RowIndex].isValid() && cell.RowIndex != -1)
+                    if (!Path.isValid(_explorer.Paths[cell.RowIndex].Value) && cell.RowIndex != -1)
                         cell.Style.BackColor = Color.Red;
                 }
             }  
@@ -46,12 +46,14 @@ namespace PathExplorer
             if (pathDataGridView.IsCurrentCellDirty)       // Only commit if cell actually changed
             {
                 pathDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                
+                if (!Path.isValid(e.FormattedValue.ToString()))
+                {
+                    pathDataGridView.CurrentCell.Style.BackColor = Color.Red;
+                }
+                else
+                    pathDataGridView.CurrentCell.Style.BackColor = Color.White;
             }
-        }
-
-        private void PathDataGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            MessageBox.Show("The entered value does not exist on the file system.");
         }
 
         private void AddFolderButtonClick(object sender, EventArgs e)
