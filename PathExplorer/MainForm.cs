@@ -81,7 +81,14 @@ namespace PathExplorer
 
         private void DeleteCurrentCellButtonClick(object sender, EventArgs e)
         {
-            _explorer.DeletePath(pathDataGridView.CurrentRow.Index);
+            if (pathDataGridView.CurrentRow != null)
+            {
+                _explorer.DeletePath(pathDataGridView.CurrentRow.Index);
+            }
+            else
+            {
+                // I don't know what you want to do here, probably nothing?
+            }
         }
     }
 }
