@@ -9,7 +9,7 @@ Using this program should be pretty straight forward. Once it loads, you will be
 
 The 'Add Folder' button will bring up the select folder dialog.
 
-To delete an entry, simply highlight it in the list and press the "Delete Current Cell" button.
+To delete an entry, simply highlight it in the list and press the "Delete Folder" button.
 
 To edit an entry, double-click on it in the list and it should allow you to edit it. If what you enter is not valid, it will appear with a red background.
 
