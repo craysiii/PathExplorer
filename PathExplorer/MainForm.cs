@@ -1,18 +1,9 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Charlie
- * Date: 9/7/2014
- * Time: 2:17 PM
- * 
- */
-
-using System;
-using System.Windows.Forms;
+﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace PathExplorer
 {
-
     public partial class MainForm : Form
     {
         private readonly PathExplorer _explorer;
@@ -21,33 +12,33 @@ namespace PathExplorer
         {
             InitializeComponent();
 
-            _explorer = new PathExplorer();                // Retrieve PATH values
+            _explorer = new PathExplorer(); // Retrieve PATH values
         }
 
         private void MainFormLoad(object sender, EventArgs e)
         {
             pathDataGridView.DataSource = _explorer.Paths; // Bind data to grid
-            pathDataGridView.RowHeadersVisible = false;    // Hide first column
+            pathDataGridView.RowHeadersVisible = false; // Hide first column
             pathDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
+
             // Any invalid paths will be singled out here
             foreach (DataGridViewRow row in pathDataGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (!Path.isValid(_explorer.Paths[cell.RowIndex].Value) && cell.RowIndex != -1)
+                    if (!Path.IsValid(_explorer.Paths[cell.RowIndex].Value) && cell.RowIndex != -1)
                         cell.Style.BackColor = Color.Red;
                 }
-            }  
+            }
         }
 
         private void PathDataGridViewCellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (pathDataGridView.IsCurrentCellDirty)       // Only commit if cell actually changed
+            if (pathDataGridView.IsCurrentCellDirty) // Only commit if cell actually changed
             {
                 pathDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                
-                if (!Path.isValid(e.FormattedValue.ToString()))
+
+                if (!Path.IsValid(e.FormattedValue.ToString()))
                 {
                     pathDataGridView.CurrentCell.Style.BackColor = Color.Red;
                 }
@@ -88,7 +79,7 @@ namespace PathExplorer
             else
             {
                 MessageBox.Show("No row selected for deletion.", "Delete Current Row",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

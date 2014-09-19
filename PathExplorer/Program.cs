@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Charlie
- * Date: 9/7/2014
- * Time: 2:17 PM
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace PathExplorer
