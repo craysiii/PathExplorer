@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace PathExplorer
@@ -11,6 +12,20 @@ namespace PathExplorer
         public MainForm()
         {
             InitializeComponent();
+
+            // Check if running as Admin, if not inform that changes can't be saved
+            var isAdmin = (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                .IsInRole(WindowsBuiltInRole.Administrator);
+            if (!isAdmin)
+            {
+                MessageBox.Show(
+                    "All changes will not be saved, you must run this application as Administrator in order to make changes.",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                commitPathButton.Enabled = false;
+                deleteCurrentCellButton.Enabled = false;
+                addFolderButton.Enabled = false;
+                 base.Text += " (Non-Administrator)";
+            }
 
             _explorer = new PathExplorer(); // Retrieve PATH values
         }
