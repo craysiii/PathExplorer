@@ -11,13 +11,9 @@ namespace PathExplorer
         }
 
         [DisplayName("Path Variable")]
-        public string Value
-        {
-            get;
-            set;
-        }
-        
-        public static bool isValid(string value)
+        public string Value { get; set; }
+
+        public static bool IsValid(string value)
         {
             return Directory.Exists(value);
         }

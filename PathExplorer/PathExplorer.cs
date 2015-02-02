@@ -6,7 +6,8 @@ namespace PathExplorer
 {
     public class PathExplorer
     {
-        private const string PathKey = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
+        private const string PathKey =
+            @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
 
         private readonly BindingList<Path> _paths = new BindingList<Path>();
 
@@ -29,10 +30,10 @@ namespace PathExplorer
 
         public void DeletePath(int index)
         {
-            if ( index >= 0 && index < _paths.Count )
+            if (index >= 0 && index < _paths.Count)
             {
                 _paths.RemoveAt(index);
-            }    
+            }
         }
 
         public void CommitPath()
